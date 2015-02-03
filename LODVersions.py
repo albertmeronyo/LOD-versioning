@@ -28,11 +28,15 @@ class LODVersions:
 
         self.config = __config
 
+        self.log.info("Getting endpoint list...")
         self.initEndpoints()
         self.log.debug(self.getEndpoints())
+        self.log.info("Querying endpoints...")
         self.queryEndpoints()
         
         self.log.info(self.getDatasets())
+        self.log.info("Serializing retrieved data...")
+        self.serializeDatasets()
 
     def initEndpoints(self):
         '''
@@ -75,7 +79,13 @@ class LODVersions:
         Gets a dict of LOD cloud datasets (key = endpoint url, value = ( dataset uri, date ) )
         '''
         return self.datasets
-                    
+
+    def serializeDatasets(self):
+        '''
+        Serializes retrieved datasets in a json file
+        '''
+        with open(self.config.get('general', 'dump_file'), 'wb') as fp:
+            json.dump(self.datasets, fp)
 
     @timeout()
     def queryEndpoint(self, url, query):
