@@ -71,12 +71,11 @@ class LODVersions:
                 pass
             if isinstance(results, dict) and "results" in results and "bindings" in results["results"]:
                 for r in results["results"]["bindings"]:
-                    if "dataset" in r and "value" in r["dataset"] and "date" in r and "value" in r["date"]:
-                        self.datasets[endpoint].append( (r["dataset"]["value"], r["date"]["value"]) )
+                    self.datasets[endpoint].append(r)
 
     def getDatasets(self):
         '''
-        Gets a dict of LOD cloud datasets (key = endpoint url, value = ( dataset uri, date ) )
+        Gets a dict of LOD cloud datasets (key = endpoint url, value = [ results ] )
         '''
         return self.datasets
 
