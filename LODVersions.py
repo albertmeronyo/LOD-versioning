@@ -85,7 +85,7 @@ class LODVersions:
         Serializes retrieved datasets in a json file
         '''
         with open(self.config.get('general', 'dump_file'), 'wb') as fp:
-            json.dump(self.datasets, fp)
+            json.dump(self.getDatasets(), fp)
 
     @timeout()
     def queryEndpoint(self, url, query):
