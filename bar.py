@@ -69,5 +69,6 @@ for chain in valuable:
                         aChain.append(o)
                 except Exception:
                         print "FATAL, ontology %s is unavailable" % o
-        available.append(aChain)
+        if len(aChain) >= 3:
+                available.append(aChain)
 print available
