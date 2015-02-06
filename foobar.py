@@ -9,7 +9,7 @@ import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-ont = {}
+ont = []
 
 f = open("ontologies-uri.json", "r")
 jf = json.load(f)
@@ -46,12 +46,27 @@ for i, o in enumerate(ds):
                         prior = URIRef(o)
                         logging.debug("Found link: %s" % prior)
                         break
-                if prior and prior != lastLink:
-                        if o not in ont:
-                                ont[o] = []
-                        ont[o].append(prior)
+                if prior:
+                        if prior == lastLink:
+                                priorLink = False
+                                break
+                        found = False
+                        for chain in ont:
+                                if o in chain:
+                                        chain.insert(chain.index(o), prior)
+                                        found = True
+                                        break
+                        if not found:
+                                ont.append([o, prior])
                         lastLinkt = prior
                 else:
+                        found = False
+                        for chain in ont:
+                                if o in chain:
+                                        found = True
+                                        break
+                        if not found:
+                                ont.append([o])
                         priorLink = False
         logging.debug(ont)
 with open('ontology-versions.json', 'wb') as fp:
