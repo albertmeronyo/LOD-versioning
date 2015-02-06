@@ -59,9 +59,10 @@ for v in sorted(valuable):
 
 # From valuable, we try to dereference them...
 for chain in valuable:
+        print "Processing chain %s" % chain
         for o in chain:
                 g = Graph()
                 try:
                         g.parse(o)
                 except Exception:
-                        print "FATAL, ontology is unavailable"
+                        print "FATAL, ontology %s is unavailable" % o
