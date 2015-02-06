@@ -70,4 +70,4 @@ for i, o in enumerate(ds):
                         priorLink = False
         logging.debug(ont)
 with open('ontology-versions.json', 'wb') as fp:
-        json.dump(self.getVersions(), fp)
+        json.dump(ont, fp)
