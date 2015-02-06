@@ -72,3 +72,4 @@ for chain in valuable:
         if len(aChain) >= 3:
                 available.append(aChain)
 print available
+json.dumps(available, "cool-chains.json")
