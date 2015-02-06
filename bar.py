@@ -70,4 +70,4 @@ for chain in valuable:
                 except Exception:
                         print "FATAL, ontology %s is unavailable" % o
         available.append(aChain)
-print aChain
+print available
