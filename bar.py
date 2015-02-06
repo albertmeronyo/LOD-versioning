@@ -72,4 +72,5 @@ for chain in valuable:
         if len(aChain) >= 3:
                 available.append(aChain)
 print available
-json.dumps(available, "cool-chains.json")
+with open("cool-chains.json", 'wb') as fp:
+        json.dump(available, fp)
