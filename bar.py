@@ -58,11 +58,16 @@ for v in sorted(valuable):
 	print v
 
 # From valuable, we try to dereference them...
+available = []
 for chain in valuable:
         print "Processing chain %s" % chain
+        aChain = []
         for o in chain:
                 g = Graph()
                 try:
                         g.parse(o)
+                        aChain.append(o)
                 except Exception:
                         print "FATAL, ontology %s is unavailable" % o
+        available.append(aChain)
+print aChain
