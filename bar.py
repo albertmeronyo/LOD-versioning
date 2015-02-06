@@ -22,11 +22,11 @@ pairDone = False
 for pair in ds:
         for chain in ontList:
                 if pair[0] in chain and pair[1] not in chain:
-                        chain.insert(chain.index(pair[0]), pair[1])
+                        chain.insert(chain.index(pair[0]) + 1, pair[1])
                         pairDone = True
                         break
                 if pair[1] in chain and pair[0] not in chain:
-                        chain.insert(chain.index(pair[1]) - 1, pair[0])
+                        chain.insert(chain.index(pair[1]), pair[0])
                         pairDone = True
                         break
                 if pair[0] in chain and pair[1] in chain:
