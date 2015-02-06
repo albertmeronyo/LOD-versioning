@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import json
+from rdflib import Graph
 
 f = open("ontologies.json", "r")
 jf = json.load(f)
@@ -55,3 +56,12 @@ print "Datasets with two versions: %s" % count2
 print "Datasets with three+ versions: %s" % count3m
 for v in sorted(valuable):
 	print v
+
+# From valuable, we try to dereference them...
+for chain in valuable:
+        for o in chain:
+                g = Graph()
+                try:
+                        g.parse(o)
+                except Exception:
+                        print "FATAL, ontology is unavailable"
