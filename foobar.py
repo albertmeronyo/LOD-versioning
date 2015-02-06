@@ -37,6 +37,7 @@ for i, o in enumerate(ds):
                 pass
         logging.info("Ontology %s retrieved correctly, parsed %s triples" % (o, len(g)))
         priorLink = True
+        lastLink = None
         while priorLink:
                 # Search for owl:priorVersion
                 prior = None
@@ -44,10 +45,12 @@ for i, o in enumerate(ds):
                         # Is it a URI?
                         prior = URIRef(o)
                         logging.debug("Found link: %s" % prior)
-                if prior:
+                        break
+                if prior and prior != lastLink:
                         if o not in ont:
                                 ont[o] = []
                         ont[o].append(prior)
+                        lastLinkt = prior
                 else:
                         priorLink = False
         logging.debug(ont)
