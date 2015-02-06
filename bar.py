@@ -64,6 +64,5 @@ for chain in valuable:
                 g = Graph()
                 try:
                         g.parse(o)
-                except IOError:
-                        print "This one tried to read the local FS"
-                        pass
+                except Exception:
+                        print "FATAL, ontology %s is unavailable" % o
