@@ -58,7 +58,7 @@ for i, o in enumerate(ds):
                                         break
                         if not found:
                                 ont.append([o, prior])
-                        lastLinkt = prior
+                        lastLink = prior
                 else:
                         found = False
                         for chain in ont:
